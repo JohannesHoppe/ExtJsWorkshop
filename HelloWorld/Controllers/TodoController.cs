@@ -11,6 +11,8 @@ namespace HelloWorld.Controllers
 {
     public class TodoController : ApiController
     {
+        public const string Url = "/api/todo";
+
         // GET api/values
         public StoreResult Get()
         {

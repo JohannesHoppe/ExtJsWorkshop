@@ -1,4 +1,5 @@
-﻿@model HelloWorld.Models.Todo             
+﻿@using HelloWorld.Controllers
+@model HelloWorld.Models.Todo             
 
 @{        
     /* Reflection */
@@ -8,7 +9,7 @@
         .TotalProperty("Total");
 
     var proxy = Html.X().AjaxProxy()
-        .Url("/api/todo")
+        .Url(TodoController.Url)
         .Reader(reader);
 
     var store = Html.X().StoreForModel()
@@ -41,7 +42,7 @@
             };
     </script>
 }
-
+      
 
 @(Html.X().Window()
       .ID("test")
@@ -55,10 +56,9 @@
               .Title("Array Grid")
               .Store(store)
               .ColumnModel(
-                  Html.X().Column().Text("Id").DataIndex("Id").Flex(1),
-                  Html.X().Column().Text("Title").DataIndex("Title"),
-                  Html.X().Column().Text("Description").DataIndex("Description"),
-                  Html.X().DateColumn().Text("DueDate").DataIndex("DueDate"),
-                  Html.X().Column().Text("Done").DataIndex("Done").Renderer("doneRenderer")
+                    Html.X().ColumnFor(m => m.Id).ToBuilder<Column.Builder>().Width(50),    
+                    Html.X().ColumnFor(m => m.Title).ToBuilder<Column.Builder>().Text("Titel"),    
+                    Html.X().ColumnFor(m => m.Description).ToBuilder<Column.Builder>().Text("Beschreibung"),    
+               Html.X().Column().Text("Done").DataIndex("Done").Renderer("doneRenderer")
               )
       ))
