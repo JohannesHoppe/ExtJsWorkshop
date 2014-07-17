@@ -1,10 +1,17 @@
 ﻿var superGrid = (function() {
 
-    var priv = "Test";
+    var onselectionChange = function(model, selected, eOpts) {
 
-    var onselectionChange = function() {
-        
+        var data = selected[0].data;
 
+        var titleField = Ext.get("titleField");
+        titleField.setValue(data.Title);
+
+        var dueDateField = Ext.get("dueDateField");
+        dueDateField.setValue(data.DueDate);
+
+        var descriptionField = Ext.get("descriptionField");
+        descriptionField.setValue(data.Description);
     }
 
     return {

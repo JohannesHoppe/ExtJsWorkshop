@@ -26,7 +26,7 @@
           .ID("grid")
          .Listeners(ev =>
             //ev.SelectionChange.Handler = "alert('Hello World');"
-            ev.SelectionChange.Handler = "console.log(item)"
+            ev.SelectionChange.Fn = "superGrid.onselectionChange"
          )    
           .Title("Array Grid")
           .Store(store)
@@ -48,10 +48,10 @@
          .Collapsible(true)
          .Layout(LayoutType.VBox)
          .Items(
-            Html.X().TextFieldFor(m => m.Title).FieldLabel("Titel"),
-            Html.X().DateFieldFor(m => m.DueDate).FieldLabel("Termin"),
-            Html.X().CheckboxFor(m => m.Done).FieldLabel("Erledigt"),
-            Html.X().TextAreaFor(m => m.Description).FieldLabel("Details")
+         Html.X().TextFieldFor(m => m.Title).FieldLabel("Titel").InputID("titleField"),
+            Html.X().DateFieldFor(m => m.DueDate).FieldLabel("Termin").InputID("dueDateField"),
+            Html.X().CheckboxFor(m => m.Done).FieldLabel("Erledigt").InputID("doneField"),
+            Html.X().TextAreaFor(m => m.Description).FieldLabel("Details").InputID("descriptionField")
             
          ); 
         
