@@ -1,4 +1,6 @@
-﻿@model HelloWorld.Models.Todo 
+﻿@model HelloWorld.Models.Todo
+@using Ext.Net.MVC
+@using Ext.Net 
  
 <h1>@ViewBag.MyUrl</h1>
 
@@ -22,10 +24,15 @@
 
     var grid = Html.X().GridPanel()
           .ID("grid")
+         .Listeners(ev =>
+            //ev.SelectionChange.Handler = "alert('Hello World');"
+            ev.SelectionChange.Handler = "console.log(item)"
+         )    
           .Title("Array Grid")
           .Store(store)
           .Region(Region.Center)
-          .SelectionModel(new RowSelectionModel())      
+          .SelectionModel(new RowSelectionModel()) 
+ 
           .ColumnModel(
                 Html.X().ColumnFor(m => m.Id).ToBuilder<Column.Builder>().Width(30),
                 Html.X().ColumnFor(m => m.Title).ToBuilder<Column.Builder>().Text("Titel"),
