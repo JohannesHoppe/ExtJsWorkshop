@@ -1,9 +1,12 @@
-﻿var superGrid = (function() {
+﻿Ext.onReady(function () {
 
-    var onselectionChange = function(model, selected, eOpts) {
+    var grid = Ext.getCmp("grid");
+
+    var handleSelectionchange = function(model, selected, eOpts) {
 
         var data = selected[0].data;
 
+        // get the DOM element
         var titleField = Ext.get("titleField");
         titleField.setValue(data.Title);
 
@@ -12,9 +15,13 @@
 
         var descriptionField = Ext.get("descriptionField");
         descriptionField.setValue(data.Description);
-    }
 
-    return {
-        onselectionChange: onselectionChange
-    }
-})();
+        // get as Cmp
+
+        var doneField = Ext.getCmp("doneField");
+        doneField.setValue(data.Done);
+    };
+
+    grid.on("selectionchange", handleSelectionchange);
+
+});

@@ -24,10 +24,11 @@
 
     var grid = Html.X().GridPanel()
           .ID("grid")
-         .Listeners(ev =>
+         
+          //.Listeners(ev =>
             //ev.SelectionChange.Handler = "alert('Hello World');"
-            ev.SelectionChange.Fn = "superGrid.onselectionChange"
-         )    
+            //ev.SelectionChange.Fn = "superGrid.onselectionChange"
+         //)    
           .Title("Array Grid")
           .Store(store)
           .Region(Region.Center)
@@ -50,7 +51,7 @@
          .Items(
          Html.X().TextFieldFor(m => m.Title).FieldLabel("Titel").InputID("titleField"),
             Html.X().DateFieldFor(m => m.DueDate).FieldLabel("Termin").InputID("dueDateField"),
-            Html.X().CheckboxFor(m => m.Done).FieldLabel("Erledigt").InputID("doneField"),
+            Html.X().CheckboxFor(m => m.Done).FieldLabel("Erledigt").ID("doneField"),
             Html.X().TextAreaFor(m => m.Description).FieldLabel("Details").InputID("descriptionField")
             
          ); 
