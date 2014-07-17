@@ -1,9 +1,5 @@
 ﻿@model HelloWorld.Models.Todo
-@using Ext.Net.MVC
-@using Ext.Net 
- 
-<h1>@ViewBag.MyUrl</h1>
-
+@using Ext.Net.MVC 
 @{        
     /* Reflection */
     
@@ -58,21 +54,6 @@
         
 }      
   
-<style>
-    .x-grid-row-over .x-grid-cell-inner {
-        font-weight: bold;
-    }
-</style>
- 
-<script>
-    var template = '<span style="color:{0};">{1}</span>';
-
-    var doneRenderer = function (value) {
-        return Ext.String.format(template, value ? "green" : "red", value);
-    };
-</script> 
-
-
 @(Html.X().Window()
       .ID("test")
       .Title("test")
@@ -82,5 +63,5 @@
       .Items(
         Html.X().Panel()
         .Layout(LayoutType.Border)
-        .Items(grid, panel))
+        .Items(grid, panel, Html.X().AntiForgeryField()))
   )

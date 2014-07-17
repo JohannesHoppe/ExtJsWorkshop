@@ -1,4 +1,8 @@
-﻿Ext.onReady(function () {
+﻿var doneRenderer = function (value) {
+    return Ext.String.format('<span style="color:{0};">{1}</span>', value ? "green" : "red", value);
+};
+
+Ext.onReady(function () {
 
     var grid = Ext.getCmp("grid");
 

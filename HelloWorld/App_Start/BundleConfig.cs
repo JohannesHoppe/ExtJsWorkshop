@@ -10,6 +10,9 @@ namespace HelloWorld
         {
             bundles.Add(new ScriptBundle("~/bundles/myscript")
                 .Include("~/Scripts/*.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/mystyles")
+                .Include("~/Content/*.css"));
         }
 
     }
