@@ -1,4 +1,23 @@
-﻿@model System.Collections.IEnumerable
+﻿@model HelloWorld.Models.Todo             
+
+@{        
+    /* Reflection */
+    
+    var reader = Html.X().JsonReader()
+        .Root("Data")
+        .TotalProperty("Total");
+
+    var proxy = Html.X().AjaxProxy()
+        .Url("/api/todo")
+        .Reader(reader);
+
+    var store = Html.X().StoreForModel()
+        .Proxy(proxy)
+        .AutoLoad(true)
+        .RemotePaging(false)
+        .RemoteSort(false)
+        .PageSize(15);
+}
 
 
 @{
@@ -34,20 +53,9 @@
       
           Html.X().GridPanel()
               .Title("Array Grid")
-              .Store(Html.X().Store()
-                  .Model(Html.X().Model()
-                      .Fields(
-                          new ModelField("ID", ModelFieldType.Int),
-                          new ModelField("Title", ModelFieldType.String),
-                          new ModelField("Description", ModelFieldType.String),
-                          new ModelField("Done", ModelFieldType.Boolean),
-                          new ModelField("DueDate", ModelFieldType.Date/*, "M/d hh:mmtt"*/)
-                      )
-                  )
-                  .DataSource(Model)
-              )
+              .Store(store)
               .ColumnModel(
-                  Html.X().Column().Text("ID").DataIndex("ID").Flex(1),
+                  Html.X().Column().Text("Id").DataIndex("Id").Flex(1),
                   Html.X().Column().Text("Title").DataIndex("Title"),
                   Html.X().Column().Text("Description").DataIndex("Description"),
                   Html.X().DateColumn().Text("DueDate").DataIndex("DueDate"),

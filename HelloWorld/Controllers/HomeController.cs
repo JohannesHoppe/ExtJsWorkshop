@@ -7,8 +7,7 @@ namespace HelloWorld.Controllers
     {
         public ActionResult Index()
         {
-
-            return View(new List<object>());
+            return View();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Ext.Net.MVC;
 using HelloWorld.Models;
 
 namespace HelloWorld.Controllers
@@ -11,10 +12,12 @@ namespace HelloWorld.Controllers
     public class TodoController : ApiController
     {
         // GET api/values
-        public IEnumerable<Todo> Get()
+        public StoreResult Get()
         {
             IEnumerable<Todo> data = TodoRepository.GetAllToDos();
-            return data;
+
+            StoreResult result = new StoreResult(data, data.Count());
+            return result;
         }
 
         // GET api/values/5
