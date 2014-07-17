@@ -41,15 +41,17 @@
     var panel = Html.X().Panel()
          .Title("Details")
          .Region(Region.East)
-           .Width(300)
+         .Width(340)
+
          .Collapsible(true)
          .Layout(LayoutType.VBox)
          .Items(
-         Html.X().TextFieldFor(m => m.Title).FieldLabel("Titel").InputID("titleField"),
+          Html.X().Panel().Items(
+            Html.X().TextFieldFor(m => m.Title).FieldLabel("Titel").InputID("titleField"),
             Html.X().DateFieldFor(m => m.DueDate).FieldLabel("Termin").InputID("dueDateField"),
             Html.X().CheckboxFor(m => m.Done).FieldLabel("Erledigt").ID("doneField"),
             Html.X().TextAreaFor(m => m.Description).FieldLabel("Details").InputID("descriptionField")
-            
+         ).PaddingSpec("20")   
          ); 
         
 }      
@@ -58,10 +60,11 @@
       .ID("test")
       .Title("test")
       .Height(300)
-      .Width(600)
+      .Width(680)
       .Layout(LayoutType.Fit)
       .Items(
         Html.X().Panel()
         .Layout(LayoutType.Border)
-        .Items(grid, panel, Html.X().AntiForgeryField()))
+        .Items(grid, panel), 
+        Html.X().AntiForgeryField()))
   )
