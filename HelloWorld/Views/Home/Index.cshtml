@@ -1,1 +1,56 @@
-﻿
+﻿@model System.Collections.IEnumerable
+
+
+@{
+    ViewBag.Title = "Simple Array Grid - Ext.NET MVC Examples";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section headtag
+    {
+    <style>
+        .x-grid-row-over .x-grid-cell-inner {
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+            var template = '<span style="color:{0};">{1}</span>';
+
+            var doneRenderer = function (value) {
+                return Ext.String.format(template, value ? "green" : "red", value);
+            };
+    </script>
+}
+
+
+@(Html.X().Window()
+      .ID("test")
+      .Title("test")
+      .Height(300)
+      .Width(600)
+      .Layout(LayoutType.Fit)
+      .Items(
+      
+          Html.X().GridPanel()
+              .Title("Array Grid")
+              .Store(Html.X().Store()
+                  .Model(Html.X().Model()
+                      .Fields(
+                          new ModelField("ID", ModelFieldType.Int),
+                          new ModelField("Title", ModelFieldType.String),
+                          new ModelField("Description", ModelFieldType.String),
+                          new ModelField("Done", ModelFieldType.Boolean),
+                          new ModelField("DueDate", ModelFieldType.Date/*, "M/d hh:mmtt"*/)
+                      )
+                  )
+                  .DataSource(Model)
+              )
+              .ColumnModel(
+                  Html.X().Column().Text("ID").DataIndex("ID").Flex(1),
+                  Html.X().Column().Text("Title").DataIndex("Title"),
+                  Html.X().Column().Text("Description").DataIndex("Description"),
+                  Html.X().DateColumn().Text("DueDate").DataIndex("DueDate"),
+                  Html.X().Column().Text("Done").DataIndex("Done").Renderer("doneRenderer")
+              )
+      ))
