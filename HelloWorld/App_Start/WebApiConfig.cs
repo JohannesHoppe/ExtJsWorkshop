@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 
 namespace HelloWorld
@@ -9,6 +10,13 @@ namespace HelloWorld
     {
         public static void Register(HttpConfiguration config)
         {
+            // removes Xml Formater from WebApi for easy debugging
+            MediaTypeFormatterCollection formatters = GlobalConfiguration.Configuration.Formatters;
+            formatters.Remove(formatters.XmlFormatter);
+
+            // more readable output
+            config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

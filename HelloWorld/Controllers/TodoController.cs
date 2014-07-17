@@ -4,21 +4,25 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using HelloWorld.Models;
 
 namespace HelloWorld.Controllers
 {
-    public class ValuesController : ApiController
+    public class TodoController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public IEnumerable<Todo> Get()
         {
-            return new string[] { "value1", "value2" };
+            IEnumerable<Todo> data = TodoRepository.GetAllToDos();
+            return data;
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public Todo Get(int id)
         {
-            return "value";
+            Todo item = TodoRepository.GetAllToDos().FirstOrDefault(x => x.Id == id);
+            return item;
+
         }
 
         // POST api/values
