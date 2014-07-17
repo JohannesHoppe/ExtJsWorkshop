@@ -8,6 +8,15 @@
 <body>
      
     @Html.X().ResourceManager()
+    
+    @(
+        Html.X().Window()
+            .ID("test")
+            .Title("test")
+            .Html("Hello World from DWX")
+            .Height(300)
+            .Width(300)
+    )
 
     @RenderBody()
 
